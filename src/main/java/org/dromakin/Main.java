@@ -5,6 +5,8 @@ import java.util.concurrent.*;
 
 public class Main {
 
+    private static final int THREAD_COUNT = Runtime.getRuntime().availableProcessors();
+
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         String[] texts = new String[25];
         for (int i = 0; i < texts.length; i++) {
@@ -13,7 +15,7 @@ public class Main {
 
         long startTs = System.currentTimeMillis(); // start time
 
-        ExecutorService executor = Executors.newFixedThreadPool(4);
+        ExecutorService executor = Executors.newFixedThreadPool(THREAD_COUNT);
         List<Future<Integer>> futureTasks = new ArrayList<>();
 
         for (String text : texts) {
